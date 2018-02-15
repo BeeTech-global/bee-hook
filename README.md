@@ -18,7 +18,7 @@ Installation via `npm`:
 
 ## Available Options:
 
-`-p` Port to use (defaults to 8080)
+`-p` Port to use (defaults to 5000)
 
 
 # Deployment (Heroku):
