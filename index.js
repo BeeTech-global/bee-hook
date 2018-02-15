@@ -1,9 +1,15 @@
 const express = require('express');
-var bodyParser = require("body-parser");
-const app = express();
-const PORT = process.env.PORT || 5000
+const bodyParser = require('body-parser');
+const argv = require('optimist')
+  .boolean('cors')
+  .argv;
 
-let refs = {};
+const BinRepository = require('./src/BinRepository');
+
+const app = express();
+const PORT = argv.p || process.env.PORT || 5000;
+
+const binRepository = new BinRepository();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -12,27 +18,62 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
 
-app.post('/bin/:referenceKey', (req, res) => {
-  refs[req.params.referenceKey] = [].concat({
-    body: req.body,
-    created_at: new Date().toISOString()
-  });
-  res.status(200);
-  res.end();
+app.post('/bin', (req, res) => {
+  return binRepository.generateHash()
+    .then((hash) => {
+      res.send(hash);
+      res.status(200);
+    })
+    .catch(() => {
+      res.send('Error on create bin. Please try again');
+      res.status(400);
+    })
 });
 
-app.get('/bin/:referenceKey', (req, res) => {
-  res.send(refs[req.params.referenceKey]);
-  res.status(200);
+app.post('/bin/:hash', (req, res) => {
+  return binRepository.create(req.params.hash, req)
+    .then(() => {
+      res.status(200);
+      res.end();
+    })
+    .catch(error => {
+      res.status(404);
+      res.send(error);
+    });
+});
+
+app.get('/bin/:hash', (req, res) => {
+  return binRepository.getByHash(req.params.hash)
+    .then((result) => {
+      res.status(200);
+      res.send(result);
+    })
+    .catch(error => {
+      res.status(404);
+      res.send(error);
+    });
 });
 
 app.get('/bin/', (req, res) => {
-  res.send(refs);
-  res.status(200);
+  return binRepository.getAll()
+    .then((result) => {
+      res.status(200);
+      res.send(result);
+    })
+    .catch(error => {
+      res.status(404);
+      res.send(error);
+    });
 });
 
-app.delete('/bin/', (req, res) => {
-  refs = {}
-  res.send();
-  res.status(200);
+app.delete('/bin/:hash', (req, res) => {
+  return binRepository.deleteHash(req.params.hash)
+    .then(() => {
+      res.status(200);
+      res.end();
+    })
+    .catch(error => {
+      res.status(404);
+      res.send(error);
+    });
 });
