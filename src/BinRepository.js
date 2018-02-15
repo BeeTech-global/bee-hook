@@ -22,7 +22,7 @@ class BinRepository {
       return Promise.reject(`Resource not found: ${hash}`);
     }
 
-    this.bins[hash].push({
+    this.bins[hash].bins.push({
       body, 
       headers,
       created_at: new Date().toISOString() 
@@ -46,7 +46,10 @@ class BinRepository {
     if (this.bins[hash]) {
       this.generateHash();
     } else {
-      this.bins[hash] = [];
+      this.bins[hash] = {
+        created_at: new Date().toISOString(),
+        bins: []
+      };
     }
 
     return Promise.resolve(hash);
