@@ -6,7 +6,18 @@ class BinRepository {
   }
 
   getAll() {
-    return Promise.resolve(Object.keys(this.bins));
+    const bins = Object.entries(this.bins)
+      .map(([hash, { created_at, last_update, total }]) => (
+        {
+          [hash]: {
+            created_at, 
+            last_update, 
+            total
+          }
+        }
+      ));
+
+    return Promise.resolve(bins);
   }
 
   getByHash(hash) {
@@ -17,21 +28,26 @@ class BinRepository {
     return Promise.resolve(this.bins[hash]);
   }
 
-  create(hash, { body, headers }) {
+  create(hash, { body, headers, method, query }) {
     if (!this.bins[hash]) {
       return Promise.reject(`Resource not found: ${hash}`);
     }
 
     this.bins[hash].bins.push({
-      body, 
+      method,
+      body,
+      query,
       headers,
-      created_at: new Date().toISOString() 
+      created_at: new Date().toISOString()
     });
+
+    this.bins[hash].last_update = new Date().toISOString();
+    this.bins[hash].total = this.bins[hash].bins.length;
 
     return Promise.resolve();
   }
 
-  deleteHash(hash){
+  deleteHash(hash) {
     if (!this.bins[hash]) {
       return Promise.reject(`Resource not found: ${hash}`);
     }
@@ -48,6 +64,7 @@ class BinRepository {
     } else {
       this.bins[hash] = {
         created_at: new Date().toISOString(),
+        last_update: new Date().toISOString(),
         bins: []
       };
     }
