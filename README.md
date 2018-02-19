@@ -7,7 +7,7 @@
 
 ### Creates new bin to post your requests
 
-**URL** : `/bin`
+**URL** : `/api/bins`
 
 **Method** : `POST`
 
@@ -28,7 +28,7 @@
 
 **URL** : `/bin/<hash>`
 
-**Method** : `POST`
+**Method** : `{ POST | GET | PUT | PATCH | OPTIONS }`
 
 **Body** :
 
@@ -43,18 +43,12 @@
 
 **Code** : `200 OK`
 
-**Content** :
+**Content** : No Content
 
-```json
-{
-    "hash": "<hash>",
-    "url": "http://localhost:5000/bin/<hash>"
-}
-```
 
 ### Check your requests
 
-**URL** : `/bin/<hash>`
+**URL** : `/api/bins/<hash>`
 
 **Method** : `GET`
 
@@ -64,25 +58,31 @@
 
 **Content** :
 
-```json
-[
-    {
-      "body": {
-        "name": "Lucas Daiki",
-        "Age": "23"
-      },
-      "headers": { ... },
-      "created_at": "2018-02-15T22:07:29.480Z"
-    },
-    {
-      "body": {
-        "name": "Alexandre Wrigth",
-        "Age": "23"
-      },
-      "headers": { ... },
-      "created_at": "2018-02-15T22:07:36.400Z"
-    }
-]
+```javascript
+{
+    "created_at": "2018-02-19T21:56:47.942Z",
+    "last_update": "2018-02-19T22:02:40.149Z",
+    "bins": [
+        {
+            "method": "POST",
+            "body": {
+                "name": "Lucas Daiki",
+                "Age": "23"
+            },
+            "query": {},
+            "headers": { ... },
+            "created_at": "2018-02-19T22:01:17.784Z"
+        },
+        {
+            "method": "GET",
+            "body": { },
+            "query": { "test": "123" }, // ?test=123
+            "headers": { ... },
+            "created_at": "2018-02-19T22:02:40.149Z"
+        }
+    ],
+    "total": 2
+}
 ```
 
 ## Installing globally
