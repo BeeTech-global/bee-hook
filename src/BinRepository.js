@@ -9,11 +9,10 @@ class BinRepository {
     const bins = Object.entries(this.bins)
       .map(([hash, { created_at, last_update, total }]) => (
         {
-          [hash]: {
-            created_at, 
-            last_update, 
-            total
-          }
+          hash,
+          created_at,
+          last_update,
+          total
         }
       ));
 
