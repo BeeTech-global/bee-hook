@@ -4,9 +4,12 @@ const argv = require('optimist')
   .boolean('cors')
   .argv;
 
+const cors = require('cors');
+
 const BinRepository = require('./src/BinRepository');
 
 const app = express();
+
 
 const PORT = argv.p || process.env.PORT || 5000;
 const HOST = process.env.HOST || `http://localhost:${PORT}`;
@@ -17,6 +20,7 @@ const binRepository = new BinRepository();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
