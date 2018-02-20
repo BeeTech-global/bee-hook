@@ -64,7 +64,8 @@ class BinRepository {
       this.bins[hash] = {
         created_at: new Date().toISOString(),
         last_update: new Date().toISOString(),
-        bins: []
+        bins: [],
+        total: 0
       };
     }
 
