@@ -1,16 +1,27 @@
 {
-  "name": "hook-mock",
-  "version": "1.0.0",
+  "name": "bee-hook",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.2"
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "faker": "^4.1.0",
+    "optimist": "^0.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
+  },
+  "bin": {
+    "bee-hook": "./bin/bee-hook"
   }
 }

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const argv = require('optimist')
@@ -8,7 +10,7 @@ require('dotenv').config()
 
 const cors = require('cors');
 
-const BinRepository = require('./src/BinRepository');
+const BinRepository = require('../src/BinRepository');
 
 const app = express();
 
