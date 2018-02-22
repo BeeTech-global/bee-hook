@@ -1,6 +1,6 @@
 {
-  "name": "@beetech/hook-mock",
-  "version": "1.0.1",
+  "name": "bee-hook",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -19,5 +19,8 @@
   },
   "devDependencies": {
     "nodemon": "^1.14.12"
+  },
+  "bin": {
+    "bee-hook": "./bin/bee-hook"
   }
 }
