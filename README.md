@@ -3,6 +3,25 @@
 `bee-hook` is a simple, zero-configuration command-line hook server. It is powerful enough for production usage, but it's simple and hackable enough to be used for testing, local development, and learning.
 (yes, it's inspired on [http-server](https://www.npmjs.com/package/http-server))
 
+
+## Installing globally
+
+Installation via `npm`:
+
+    npm install bee-hook -g
+
+## Usage
+
+    bee-hook [options]
+
+*Now you can visit http://localhost:5000 to view your server*
+
+
+## Available Options
+
+`-p` Port to use (defaults to 5000)
+
+
 ## API's
 
 ### Creates new bin to post your requests
@@ -24,11 +43,13 @@
 }
 ```
 
-### Post your requests
+___
+
+### Send your requests
 
 **URL** : `/bin/<hash>`
 
-**Method** : `{ POST | GET | PUT | PATCH | OPTIONS }`
+**Method** : `{ POST | GET | PUT | PATCH | DELETE | OPTIONS }`
 
 **Body** :
 
@@ -45,6 +66,7 @@
 
 **Content** : No Content
 
+___
 
 ### Check your requests
 
@@ -85,22 +107,52 @@
 }
 ```
 
-## Installing globally
+___
 
-Installation via `npm`:
+### List all bins
 
-    npm install bee-hook -g
+**URL** : `/api/bins`
 
-## Usage
+**Method** : `GET`
 
-    bee-hook [options]
+**Reponses**
 
-*Now you can visit http://localhost:5000 to view your server*
+**Code** : `200 OK`
+
+**Content** :
+
+```javascript
+[
+    {
+        "hash":"grqjbf8bti",
+        "created_at":"2018-02-21T23:24:05.488Z",
+        "last_update":"2018-02-21T23:26:00.595Z",
+        "total":50
+    },
+    {
+        "hash":"hhyasd12x",
+        "created_at":"2018-02-21T23:24:05.488Z",
+        "last_update":"2018-02-23T23:26:00.595Z",
+        "total":6
+    }
+]
+```
+
+___
 
 
-## Available Options
+### Delete a hash
 
-`-p` Port to use (defaults to 5000)
+**URL** : `/api/bins/<hash>`
+
+**Method** : `DELETE`
+
+**Reponses**
+
+**Code** : `200 OK`
+
+**Content** : No Content
+___
 
 ## Deployment (Heroku)
 
@@ -127,3 +179,4 @@ Installation via `npm`:
  ```
  heroku open
  ```
+ 
