@@ -188,3 +188,11 @@ $ heroku apps:info hook-mock
 
 $ heroku config:set HOST=<url>
 ```
+
+## Deployment (PM2)
+
+- Clone the `bee-hook` repository
+- Add your server key as deployment key in repository
+- Edit `ecosystem.conf.js`
+- Setup application on server - run this in your machine - `pm2 deploy production setup`
+- Deploy application - run this in your machine - `pm2 deploy production --force`
