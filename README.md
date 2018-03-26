@@ -179,3 +179,12 @@ ___
  ```
  heroku open
  ```
+
+- Configuring self url
+```
+$ heroku apps:info hook-mock
+...
+# Web URL: <url>
+
+$ heroku config:set HOST=<url>
+```
