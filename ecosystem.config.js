@@ -26,7 +26,7 @@ const deploy = {
         "user": "ubuntu",
         "key": "~/.ssh/beetech_rsa",
         "host": "185.136.234.35",
-        "ref": "origin/master",
+        "ref": "origin/feat-deploy",
         "repo": "git@bitbucket.org:beetech-engineers/server-mock-hook.git",
         "path": "/home/ubuntu/server-mock-hook/",
         "post-deploy": "npm install --progress=false && pm2 startOrRestart /home/ubuntu/server-mock-hook/source/ecosystem.config.js --only server-mock-hook"
