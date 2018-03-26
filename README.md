@@ -4,7 +4,9 @@
 (yes, it's inspired by [http-server](https://www.npmjs.com/package/http-server))
 
 ## Try it now :D
-    https://hook.beetech.global/
+
+ - API: https://hook.beetech.global
+ - Client: https://beetech-global.github.io/bee-hook-client
 
 ## Installing globally
 
