@@ -16,7 +16,7 @@ const apps = [
         env: {
             NODE_ENV: "production",
             PORT: 5000,
-            HOST: "http://localhost:5000"
+            HOST: "https://hook.beetech.global"
         }
     }
 ];
