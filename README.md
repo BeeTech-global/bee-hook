@@ -3,6 +3,8 @@
 `bee-hook` is a simple, zero-configuration command-line hook server. It is powerful enough for production usage, but it's simple and hackable enough to be used for testing, local development, and learning.
 (yes, it's inspired by [http-server](https://www.npmjs.com/package/http-server))
 
+## Try it now :D
+    https://hook.beetech.global/
 
 ## Installing globally
 
