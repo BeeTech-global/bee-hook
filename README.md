@@ -5,8 +5,8 @@
 
 ## Try it now :D
 
- - API: https://hook.beetech.global
- - Client: https://beetech-global.github.io/bee-hook-client
+ - **API**: https://hook.beetech.global
+ - **Client**: https://beetech-global.github.io/bee-hook-client
 
 ## Installing globally
 
