@@ -1,16 +1,19 @@
-# Bee Hook Server
+<h1 align="center">:bee: Bee Hook Server :bee:</h1>
 
-`bee-hook` is a simple, zero-configuration command-line hook server. It is powerful enough for production usage, but it's simple and hackable enough to be used for testing, local development, and learning.
-(yes, it's inspired by [http-server](https://www.npmjs.com/package/http-server))
+<div align="center">
+    <code>bee-hook</code> is a simple, zero-configuration command-line hook server. <br>
+    It's powerful enough for production usage, but also simple and hackable enough to be used for testing, local development and learning. <em>(inspired by <a href="https://www.npmjs.com/package/http-server" title="http-server">https://www.npmjs.com/package/http-server</a>)</em>
+    
+</div>
+
+----
 
 ## Try it now :D
 
  - **API**: https://hook.beetech.global
  - **Client**: https://beetech-global.github.io/bee-hook-client
 
-## Installing globally
-
-Installation via `npm`:
+## Install
 
     npm install bee-hook -g
 
