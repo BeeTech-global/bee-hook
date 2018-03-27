@@ -68,7 +68,7 @@ ___
 
 **Code** : `200 OK`
 
-**Content** : No Content
+**Content** : `{ "id": "<id>" }`
 
 ___
 
@@ -90,6 +90,7 @@ ___
     "last_update": "2018-02-19T22:02:40.149Z",
     "bins": [
         {
+            "id": "1s41xgf",
             "method": "POST",
             "body": {
                 "name": "Lucas Daiki",
@@ -100,6 +101,7 @@ ___
             "created_at": "2018-02-19T22:01:17.784Z"
         },
         {
+            "id": "10xjh47",
             "method": "GET",
             "body": { },
             "query": { "test": "123" }, // ?test=123
@@ -108,6 +110,34 @@ ___
         }
     ],
     "total": 2
+}
+```
+
+___
+
+### Check single requests
+
+**URL** : `/api/bins/<hash>/<id>`
+
+**Method** : `GET`
+
+**Reponses**
+
+**Code** : `200 OK`
+
+**Content** :
+
+```javascript
+{
+    "id": "1s41xgf",
+    "method": "POST",
+    "body": {
+        "name": "Lucas Daiki",
+        "Age": "23"
+    },
+    "query": {},
+    "headers": { ... },
+    "created_at": "2018-02-19T22:01:17.784Z"
 }
 ```
 
