@@ -2,7 +2,7 @@
 
 <div align="center">
     <code>bee-hook</code> is a simple, zero-configuration command-line hook server. <br>
-    It's powerful enough for production usage, but also simple and hackable enough to be used for testing, local development and learning. <em>(inspired by <a href="https://www.npmjs.com/package/http-server" title="http-server">https://www.npmjs.com/package/http-server</a>)</em>
+    It's powerful enough for production usage, but also simple and hackable enough to be used for testing, local development and learning. <em>(inspired by <a href="https://www.npmjs.com/package/http-server" title="http-server">http-server</a>)</em>
     
 </div>
 
