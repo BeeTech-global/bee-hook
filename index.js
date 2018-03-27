@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const argv = require('optimist')
   .boolean('cors')
   .argv;
 
-require('dotenv').config()
+require('dotenv').config();
 
 const cors = require('cors');
 
@@ -40,7 +41,7 @@ app.get('/api/bins', (req, res) => {
 });
 
 app.post('/api/bins', (req, res) => {
-  return binRepository.generateHash()
+  return binRepository.createBin()
     .then((hash) => {
       res.send({
         hash,
@@ -66,6 +67,18 @@ app.get('/api/bins/:hash', (req, res) => {
     });
 });
 
+app.get('/api/bins/:hash/:id', (req, res) => {
+  return binRepository.getById(req.params.hash, req.params.id)
+    .then((result) => {
+      res.status(200);
+      res.send(result);
+    })
+    .catch(error => {
+      res.status(404);
+      res.send(error);
+    });
+});
+
 app.delete('/api/bins/:hash', (req, res) => {
   return binRepository.deleteHash(req.params.hash)
     .then(() => {
@@ -80,9 +93,9 @@ app.delete('/api/bins/:hash', (req, res) => {
 
 app.all('/bin/:hash', (req, res) => {
   return binRepository.create(req.params.hash, req)
-    .then(() => {
+    .then((id) => {
       res.status(200);
-      res.end();
+      res.send({ id });
     })
     .catch(error => {
       res.status(404);

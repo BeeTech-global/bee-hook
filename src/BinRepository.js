@@ -27,23 +27,46 @@ class BinRepository {
     return Promise.resolve(this.bins[hash]);
   }
 
-  create(hash, { body, headers, method, query }) {
+  getById(hash, id) {
+    return this.getByHash(hash)
+      .then(bin => {
+        const item = bin.bins.find(bin => bin.id === id);
+
+        if (!item) {
+          return Promise.reject(`Resource not found: ${hash}/${id}`);
+        }
+
+        return item;
+      });
+  }
+
+  create(hash, req) {
     if (!this.bins[hash]) {
       return Promise.reject(`Resource not found: ${hash}`);
     }
 
-    this.bins[hash].bins.push({
-      method,
-      body,
-      query,
-      headers,
-      created_at: new Date().toISOString()
-    });
+    return this.generateHash()
+      .then((id) => {
+        const { body, headers, method, query, socket } = req;
+        const origin = socket.remoteAddress;
+        const host = req.get('host');
 
-    this.bins[hash].last_update = new Date().toISOString();
-    this.bins[hash].total = this.bins[hash].bins.length;
+        this.bins[hash].bins.push({
+          id,
+          method,
+          body,
+          query,
+          headers,
+          host,
+          origin,
+          created_at: new Date().toISOString()
+        });
 
-    return Promise.resolve();
+        this.bins[hash].last_update = new Date().toISOString();
+        this.bins[hash].total = this.bins[hash].bins.length;
+
+        return id;
+      });
   }
 
   deleteHash(hash) {
@@ -56,18 +79,22 @@ class BinRepository {
     return Promise.resolve();
   }
 
+  createBin() {
+    return this.generateHash()
+      .then((hash) => {
+        this.bins[hash] = {
+          created_at: new Date().toISOString(),
+          last_update: new Date().toISOString(),
+          bins: [],
+          total: 0
+        };
+
+        return hash;
+      });
+  }
+
   generateHash() {
     const hash = faker.random.alphaNumeric(10);
-    if (this.bins[hash]) {
-      this.generateHash();
-    } else {
-      this.bins[hash] = {
-        created_at: new Date().toISOString(),
-        last_update: new Date().toISOString(),
-        bins: [],
-        total: 0
-      };
-    }
 
     return Promise.resolve(hash);
   }
